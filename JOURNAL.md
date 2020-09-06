@@ -27,3 +27,5 @@
 07:57 — Completed navigation and added basic pages (Home, Search, Analyst and Shuffler).
 
 09:09 — First Red Bull.
+
+12:33 — Complete integration of `getAddress` into the store.

@@ -55,6 +55,9 @@
 </template>
 
 <script>
+/* Initialize vuex. */
+import { mapActions, mapGetters } from 'vuex'
+
 /* Import modules. */
 import bchLink from 'bitcoincom-link'
 
@@ -67,6 +70,18 @@ export default {
             output: null,
             status: null,
         }
+    },
+    computed: {
+        ...mapGetters([
+            'getAddress',
+        ]),
+
+    },
+    methods: {
+        ...mapActions([
+            'toast',
+        ]),
+
     },
     created: function () {
 
