@@ -6,6 +6,8 @@
 
         <hr class="my-1" />
 
+        <AnalystDoughnutChart :chartdata="chartData" :options="chartOptions"/>
+
         <div class="row">
             <div class="col">
                 <p>
@@ -23,20 +25,47 @@
 </template>
 
 <script>
+/* Import components. */
+import AnalystDoughnutChart from '@/components/AnalystDoughnutChart'
+
 export default {
     components: {
-        // HelloWorld
+        AnalystDoughnutChart,
     },
     data: () => {
         return {
-            //
+            // chartData: {
+            //     labels: ['January', 'February'],
+            //     datasets: [{
+            //         label: 'Data One',
+            //         backgroundColor: '#f87979',
+            //         data: [40, 20]
+            //     }]
+            // },
+            chartData: {
+                datasets: [{
+                    data: [10, 20, 30],
+                    backgroundColor: ['red', 'yellow', 'blue'],
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'Red',
+                    'Yellow',
+                    'Blue'
+                ]
+            },
+            chartOptions: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
         }
     },
     created: function () {
 
     },
     mounted: function () {
-
+        // this.renderChart(this.chartData, this.options)
     },
 }
 </script>

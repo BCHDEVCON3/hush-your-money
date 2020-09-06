@@ -40,6 +40,8 @@ _(NOTE: Times are in UTC)_
 
 20:38 — Implemented the final Link API `sendAssets`, enabling __[sending BCH](https://explorer.bitcoin.com/bch/tx/b286eeb69ba1403b2eb0bc1e7e376e4e416fbcbd890b681e5a64d5d820e1c962)__ from Bitcoin.com wallet to Hush wallet.
 
+21:59 — Added ChartJS for graphical analysis.
+
 ---
 
 ### Monday, September 7th 2020

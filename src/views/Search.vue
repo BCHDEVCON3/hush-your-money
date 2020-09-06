@@ -25,10 +25,27 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                <v-text-field
+                    label="Extended public key"
+                    outlined
+                    clearable
+                    v-model="searchTxt"
+                    @change="handleSearch"
+                    @keyup="handleSearch"
+                    @paste="handleSearch"
+                ></v-text-field>
+            </div>
+        </div>
+
     </main>
 </template>
 
 <script>
+/* Initialize vuex. */
+import { mapActions, mapGetters } from 'vuex'
+
 /* Set interval delay. */
 const INTERVAL_DELAY = 250
 
@@ -38,8 +55,27 @@ export default {
     },
     data: () => {
         return {
+            searchTxt: null,
             searchProgress: null,
             searchInterval: null,
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'getAddress',
+            'getMasterSeed',
+        ]),
+
+    },
+    methods: {
+        ...mapActions([
+            'toast',
+        ]),
+
+        handleSearch() {
+            /* Show notification. */
+            return this.toast(['Oops!', 'You cannot do that, please try again', 'error'])
+
         }
     },
     created: function () {

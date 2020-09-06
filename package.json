@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bitcoincom-link": "0.1.10-ping02",
+    "chart.js": "2.9.3",
     "core-js": "3.6.5",
     "moment": "2.27.0",
     "nitojs": "gitlab:bchplease/nitojs",
@@ -17,6 +18,7 @@
     "superagent": "6.1.0",
     "sweetalert2": "9.17.2",
     "vue": "2.6.11",
+    "vue-chartjs": "3.5.1",
     "vue-router": "3.2.0",
     "vuetify": "2.3.10",
     "vuex": "3.4.0",
