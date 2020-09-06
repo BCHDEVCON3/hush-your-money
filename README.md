@@ -2,7 +2,7 @@
 
 A web-based solution for CashShuffle (and a path to CashFusion) integration into the Bitcoin.com mobile wallet.
 
-__https://devcon3.hushyourmoney.com/__
+__https://bchdevcon3.hushyourmoney.com__
 
 ## Foreword
 
@@ -51,5 +51,18 @@ __This would enable the application to:__
 _Due to the fact the Bitcoin.com mobile wallet is currently closed-source, this goal will be developed and tested using the __[Badger plugin for Chrome/Brave](https://badger.bitcoin.com/)__. Fortunately, the functionality should be nearly identical if the Bitcoin.com wallet developers should choose to extend it to their app as well._
 
 ### Questions & answers
+
+1. __Q:__ Will this project allow me to use CashFusion from within the Bitcoin.com wallet?  
+__A:__ There's a 100% chance of that NOT happening by the end of this hackathon. However, this project WILL advance the groundwork necessary to see that happen by year's end.
+
+### Screenshots
+
+...
+
+### Presentation
+
+...
+
+### What's next?
 
 ...

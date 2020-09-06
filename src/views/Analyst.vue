@@ -1,7 +1,7 @@
 <template>
     <main class="container-fluid">
         <div class="text-center my-2">
-            <h2>Hush Your Money</h2>
+            <h2>Analyst</h2>
         </div>
 
         <hr class="my-1" />

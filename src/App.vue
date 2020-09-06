@@ -79,7 +79,7 @@ export default {
     font-weight: 600;
 }
 .toolbar-title span {
-    margin-right: 3px;
+    margin-right: 2px;
 }
 .toolbar-title .text-bitcoin {
     color: rgba(255, 255, 255, 0.9);
