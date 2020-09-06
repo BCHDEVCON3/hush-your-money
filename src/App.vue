@@ -13,12 +13,7 @@
         <v-toolbar
             dense
             dark
-            color="dark"
         >
-            <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-            <!-- <v-img :src="require('@/assets/bitcoin-com-icon.png')" class="bitcoin-com-icon"></v-img> -->
-            <!-- <v-img :src="require('@/assets/logo.png')"></v-img> -->
-
             <v-toolbar-title class="toolbar-title" @click="loadWin('/')">
                 <span class="text-bitcoin">Bitcoin.com</span>
                 <span class="text-hush">Hush</span>
@@ -31,11 +26,13 @@
             </v-btn>
 
             <v-btn icon @click="loadWin('analyst')">
-                <v-icon>mdi-heart</v-icon>
+                <v-icon>mdi-clipboard-pulse-outline</v-icon>
+                <!-- <v-icon>mdi-dna</v-icon> -->
             </v-btn>
 
             <v-btn icon @click="loadWin('shuffler')">
-                <v-icon>mdi-dots-vertical</v-icon>
+                <!-- <v-icon>mdi-electron-framework</v-icon> -->
+                <v-icon>mdi-rotate-orbit</v-icon>
             </v-btn>
         </v-toolbar>
 
@@ -85,9 +82,9 @@ export default {
     margin-right: 3px;
 }
 .toolbar-title .text-bitcoin {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
 }
 .toolbar-title .text-hush {
-    color: rgba(0, 193, 140, 0.8);
+    color: rgba(0, 193, 140, 0.9);
 }
 </style>
