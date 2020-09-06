@@ -21,3 +21,7 @@
 01:22 — Completed the project's full scope of work
 
 04:22 — Completed testing & experiments of __`bitcoincom-link`__, plus added __[address from extended public key](https://gitlab.com/bchplease/nitojs/-/commit/e479f7707fe268ac68286ef6bc1aa101eb85eb08)__ to NitoJS.
+
+06:00 — Dunkin breakfast.
+
+07:57 — Completed navigation and added basic pages (Home, Search, Analyst and Shuffler).
