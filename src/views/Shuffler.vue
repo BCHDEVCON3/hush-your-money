@@ -7,10 +7,33 @@
         <hr class="my-1" />
 
         <div class="row">
-            <div class="col">
-                <pre v-html="output" />
+            <div class="col-4 text-right">
+                Deposit:
+            </div>
+            <div class="col-8">
+                {{displayAddress('deposit')}}
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-4 text-right">
+                Change:
+            </div>
+            <div class="col-8">
+                {{displayAddress('change')}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 text-right">
+                Privacy:
+            </div>
+            <div class="col-8">
+                {{displayAddress('nito')}}
+            </div>
+        </div>
+
+        <hr />
 
         <div class="row">
             <div class="col">
@@ -39,12 +62,12 @@ export default {
     data: () => {
         return {
             address: null,
-            output: null,
         }
     },
     computed: {
         ...mapGetters([
             'getAddress',
+            'getMasterSeed',
         ]),
 
     },
@@ -53,19 +76,21 @@ export default {
             'toast',
         ]),
 
+        displayAddress(_account) {
+            if (this.getAddress(_account)) {
+                /* Retrieve address. */
+                const address = this.getAddress(_account)
+
+                return address.slice(12, 20) + ' ... ' + address.slice(-8)
+                // return address.slice(12)
+            } else {
+                return null
+            }
+        },
+
     },
     created: async function () {
-        /* Request address. */
-        // this.address = await this.getAddress
-        //     .catch(err => {
-        //         console.error('ADDRESS ERROR:', err)
-        //         this.output = JSON.stringify(err, null, 2)
-        //     })
-        // console.log('ADDRESS', this.address)
-
-        // if (this.address) {
-        //     this.output = this.address
-        // }
+        //
     },
     mounted: function () {
 

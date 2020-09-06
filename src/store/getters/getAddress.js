@@ -1,54 +1,51 @@
 /* Import modules. */
-import bchLink from 'bitcoincom-link'
+import Nito from 'nitojs'
 
 /**
- * Get (Next) Address
+ * Get Address
  *
- * NOTE: In the Bitcoin.com wallet, this method will iterate to the next
- *       available address in the wallet. This will occure regardless of if
- *       the previous address has been used.
+ * Returns the next avaialble address for the specified account.
  */
-const getAddress = async () => {
-    /* Initialize error. */
-    let error = null
+const getAddress = (state, getters) => (_account) => {
+    /* Initialize chain. */
+    let chain = null
 
-    const data = await bchLink.getAddress({
-        protocol: 'BCH',
-    })
-    .catch(err => {
-        console.log('ERROR:', err) // eslint-disable-line no-console
+    /* Select chain. */
+    switch(_account) {
+    case 'deposit':
+        chain = 0
+        break
+    case 'change':
+        chain = 1
+        break
+    case 'nito':
+        chain = 7867
+        break
+    }
 
-        switch(err.type) {
-        case 'CONNECTION_DENIED':
-            error = 'User is not signed into wallet.'
-            console.error(error) // eslint-disable-line no-console
-            break
-        case 'NO_PROVIDER':
-            error = 'No provider available.'
-            console.error(error) // eslint-disable-line no-console
-            break
-        case 'CANCELED':
-            error = 'The user has canceled this request.'
-            console.error(error) // eslint-disable-line no-console
-            break
-        case 'PROTOCOL_ERROR':
-            error = 'The provided protocol is not supported by this wallet.'
-            console.error(error) // eslint-disable-line no-console
-            break
-        }
-    })
-
-    /* Validate data. */
-    if (data && data.address) {
-        console.log('User address (async): ' + data.address)
-        console.log('User address label (optional): ' + data.label)
-
-        /* Return address. */
-        return data.address
-    } else {
-        /* Return error. */
+    /* Validate chain. */
+    if (chain === null) {
         return null
     }
+
+    /* Set current index. */
+    // FIXME: We hard-code this to save time during the event.
+    const currentIndex = 0
+
+    /* Set derivation path. */
+    const path = getters.getDerivationPath(chain, currentIndex)
+
+    /* Initialize HD node. */
+    const hdNode = getters.getHDNode
+
+    /* Initialize child node. */
+    const childNode = hdNode.deriveChild(path)
+
+    /* Set (receiving) address. */
+    const address = Nito.Address.toCashAddress(childNode)
+
+    /* Return address. */
+    return address
 }
 
 /* Export module. */

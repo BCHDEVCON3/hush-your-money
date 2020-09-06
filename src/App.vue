@@ -50,11 +50,6 @@
 </template>
 
 <script>
-/**
- * Path to Bitcoin.com Wallet Dev
- * https://ipfs.io/ipfs/QmTaAWcTJUw2QaoTLa6cM2ERLfnrtiVrHLPtoic21fFbTz/bitcoin-wallet-dev.apk
- */
-
 export default {
     components: {
         // HelloWorld
