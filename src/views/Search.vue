@@ -16,11 +16,7 @@
         <div class="row">
             <div class="col">
                 <p>
-                    Ab summis aliqua do eiusmod et quae iis laborum, ut elit firmissimum, id fugiat
-                    nescius exercitation. Do id quae dolor esse, ita laborum transferrem, mentitum
-                    arbitrantur ubi officia et hic quid probant consectetur ut arbitror qui iudicem
-                    ea quorum de an fugiat mentitum, quid o excepteur a noster, veniam cupidatat a
-                    comprehenderit.
+                    Perform a real-time blockchain search on ANY address or transaction id.
                 </p>
             </div>
         </div>
@@ -28,7 +24,8 @@
         <div class="row">
             <div class="col">
                 <v-text-field
-                    label="Extended public key"
+                    label="Type or paste your search"
+                    hint="Search for an ANY address or transaction id"
                     outlined
                     clearable
                     v-model="searchTxt"
@@ -39,10 +36,31 @@
             </div>
         </div>
 
+        <div class="text-center mt-5" v-if="isSearching">
+            <v-progress-circular
+              :size="50"
+              color="primary"
+              indeterminate
+            ></v-progress-circular>
+        </div>
+
+        <div v-if="txs">
+            <div class="row" v-for="(tx, index) of txs" :key="tx + index">
+                <div class="col">
+                    <span v-if="index < 2" class="text-success">✓</span>
+                    <span v-if="index >= 2" class="text-danger">ⅹ</span>
+                    {{displayAddress(tx)}}
+                </div>
+            </div>
+        </div>
+
     </main>
 </template>
 
 <script>
+/* Import modules. */
+import superagent from 'superagent'
+
 /* Initialize vuex. */
 import { mapActions, mapGetters } from 'vuex'
 
@@ -58,6 +76,10 @@ export default {
             searchTxt: null,
             searchProgress: null,
             searchInterval: null,
+            isSearching: null,
+
+            output: null,
+            txs: null,
         }
     },
     computed: {
@@ -72,23 +94,91 @@ export default {
             'toast',
         ]),
 
+        displayAddress(_address) {
+            if (_address) {
+                return _address.slice(12, 20) + ' ... ' + _address.slice(-8)
+                // return _address.slice(12)
+            } else {
+                return null
+            }
+        },
+
+        startSearchProgress() {
+            this.searchInterval = setInterval(() => {
+                if (this.searchProgress < 75) {
+                    this.searchProgress += 5
+                } else {
+                    clearInterval(this.searchInterval)
+                    this.isSearching = false
+                    this.searchProgress = 0
+                }
+            }, INTERVAL_DELAY)
+
+        },
+
         handleSearch() {
+            this.startSearchProgress()
+
+            this.isSearching = true
+
+            const addrs = {
+                v: 3,
+                q: {
+                    find: {
+                        $or: [
+                            { 'in.e.a': this.searchTxt },
+                            { 'out.e.a': this.searchTxt },
+                        ]
+                    },
+                    limit: 10
+                },
+                r: {
+                    f: '[ .[] | { height: .tx.h, addr: .out[0].e } ]'
+                }
+            }
+
+            const ENDPOINT = 'https://bitdb.bch.sx/q/'
+            const b64 = Buffer.from(JSON.stringify(addrs)).toString('base64')
+            const url = ENDPOINT + b64
+
+            // Make an HTTP request to bitdb.fountainhead.cash public endpoint
+            superagent
+                .get(url)
+                // .set('key', '1M2PjV7yGRg4dB8N32Qhw1wrDfDfZyi8VQ')
+                .end((err, res) => {
+                    if (err) return console.error(err)
+
+                    const r = res.body
+
+                    if (r.c) {
+                        r.c.forEach(items => {
+                            // console.log(items.msg)
+                            console.log(items)
+                            this.output += JSON.stringify(items, null, 2)
+                            this.txs.push(items.height)
+                            // console.log(util.inspect(items, false, null, true))
+                        })
+                    } else {
+                        console.log('RESPONSE:', res.body)
+                    }
+                })
+
             /* Show notification. */
-            return this.toast(['Oops!', 'You cannot do that, please try again', 'error'])
+            // return this.toast(['Oops!', 'Invalid search, please try again', 'error'])
 
         }
+
     },
     created: function () {
-        this.searchProgress = 5
+        this.searchProgress = 0
+
+        this.isSearching = false
+
+        this.output = ''
+        this.txs = []
     },
     mounted: function () {
-        this.searchInterval = setInterval(() => {
-            if (this.searchProgress < 75) {
-                this.searchProgress += 5
-            } else {
-                clearInterval(this.searchInterval)
-            }
-        }, INTERVAL_DELAY)
+        //
     },
     beforeDestroy() {
         /* Validate search interval. */

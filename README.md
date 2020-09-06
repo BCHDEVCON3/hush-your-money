@@ -70,3 +70,5 @@ __A:__ There's a 100% chance of that NOT happening by the end of this hackathon.
 ### Developer notes and feedback
 
 1. Recommend allowing requests for the "current" address (w/o iterating account index) on the Bitcoin.com wallet. _NOTE: This is how it currently works on Badger._
+
+2. Improve __"services"__ infrastructure to avoid messages like: `{"errors":["MongoError: Executor error during find command :: caused by :: operation exceeded time limit"]}`

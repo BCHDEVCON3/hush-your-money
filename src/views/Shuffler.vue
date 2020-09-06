@@ -48,17 +48,15 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" v-if="hasUpdate">
             <div class="col">
-                <p>
-                    Ex eram instituendarum, se quorum cupidatat. De ullamco est probant, e an
-                    tractavissent. An eram nulla amet mandaremus si quamquam esse legam incurreret
-                    aliqua te te fugiat se veniam, ab e amet tempor nisi. An occaecat
-                    familiaritatem, eu quo duis eram enim.Commodo praesentibus de senserit in
-                    doctrina ex summis eu aute vidisse admodum, possumus id probant in id sunt
-                    multos irure mandaremus quo de aute appellat expetendis ut sunt officia quo sint
-                    quorum, veniam exquisitaque ullamco minim senserit.
-                </p>
+                <h4 class="text-danger">
+                    DEPOSIT RECEIVED!
+                </h4>
+
+                <h4>
+                    Shuffling will begin momentarily, please stand by...
+                </h4>
             </div>
         </div>
     </main>
@@ -70,7 +68,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 /* Import modules. */
 import bchLink from 'bitcoincom-link'
-// import Nito from 'nitojs'
+import Nito from 'nitojs'
 
 export default {
     components: {
@@ -79,6 +77,8 @@ export default {
     data: () => {
         return {
             address: null,
+            blockchain: null,
+            hasUpdate: null,
         }
     },
     computed: {
@@ -103,6 +103,31 @@ export default {
             } else {
                 return null
             }
+        },
+
+        /**
+         * Initialize Blockchain
+         */
+        initBlockchain() {
+            /* Initialize Nito blockchain. */
+            this.blockchain = new Nito.Blockchain()
+            console.log('NITO BLOCKCHAIN', this.blockchain)
+
+            if (this.getAddress('nito')) {
+                /* Subscribe to address updates. */
+                this.blockchain
+                    .subscribe('address', this.getAddress('nito'))
+            }
+
+            /* Handle blockchain updates. */
+            this.blockchain.on('update', (_msg) => {
+                console.log('SHUFFLER RECEIVED BLOCKCHAIN UPDATE (msg):', _msg)
+
+                if (_msg && _msg.type === 'mempool') {
+                    /* Set flag. */
+                    this.hasUpdate = true
+                }
+            })
         },
 
         send() {
@@ -141,10 +166,20 @@ export default {
 
     },
     created: async function () {
-        //
+        /* Initialize blockchain. */
+        this.initBlockchain()
+
+        this.hasUpdate = false
     },
     mounted: function () {
 
+    },
+    beforeDestroy() {
+        /* Validate blockchain. */
+        if (this.blockchain) {
+            /* Unsubscribe from blockchain. */
+            this.blockchain.unsubscribe()
+        }
     },
 }
 </script>

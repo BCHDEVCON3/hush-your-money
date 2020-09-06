@@ -42,6 +42,8 @@ _(NOTE: Times are in UTC)_
 
 21:59 — Added ChartJS for graphical analysis.
 
+23:41 — Added the final code module. Time for cleanup (with 19 mins to spare).
+
 ---
 
 ### Monday, September 7th 2020
