@@ -56,17 +56,16 @@ export default {
     },
     created: async function () {
         /* Request address. */
-        this.address = await this.getAddress
-            .catch(err => {
-                console.error('ADDRESS ERROR:', err)
-                this.output = JSON.stringify(err, null, 2)
-            })
+        // this.address = await this.getAddress
+        //     .catch(err => {
+        //         console.error('ADDRESS ERROR:', err)
+        //         this.output = JSON.stringify(err, null, 2)
+        //     })
+        // console.log('ADDRESS', this.address)
 
-        console.log('ADDRESS', this.address)
-
-        if (this.address) {
-            this.output = this.address
-        }
+        // if (this.address) {
+        //     this.output = this.address
+        // }
     },
     mounted: function () {
 

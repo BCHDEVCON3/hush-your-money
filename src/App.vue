@@ -19,6 +19,14 @@
                 <span class="text-hush">Hush</span>
             </v-toolbar-title>
 
+            <v-progress-linear
+                :active="loading"
+                :indeterminate="loading"
+                absolute
+                bottom
+                color="deep-purple accent-4"
+            ></v-progress-linear>
+
             <v-spacer></v-spacer>
 
             <v-btn icon @click="loadWin('search')">
@@ -53,7 +61,7 @@ export default {
     },
     data: () => {
         return {
-            //
+            loading: null
         }
     },
     methods: {
@@ -66,10 +74,18 @@ export default {
 
     },
     created: function () {
-
+        /* Initialize loading. */
+        this.loading = false
     },
     mounted: function () {
-
+        // setTimeout(() => {
+        //     this.loading = true
+        //     console.log('START LOADING');
+        // }, 2000)
+        // setTimeout(() => {
+        //     this.loading = false
+        //     console.log('STOP LOADING');
+        // }, 7000)
     },
 }
 </script>

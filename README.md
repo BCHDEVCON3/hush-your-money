@@ -65,7 +65,7 @@ __A:__ There's a 100% chance of that NOT happening by the end of this hackathon.
 
 ### What's next?
 
-...
+1. Copy a fully-developed wallet (ie. Causes Cash) for a proper UX when shuffling and managing coins.
 
 ### Developer notes and feedback
 

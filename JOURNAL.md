@@ -29,3 +29,5 @@
 09:09 — First Red Bull.
 
 12:33 — Complete integration of `getAddress` into the store.
+
+14:40 — Saving/clearing Extended Public Key for use in wallet functions.
