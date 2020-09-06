@@ -1,6 +1,6 @@
 {
   "name": "hush-your-money",
-  "version": "20.9.5",
+  "version": "20.9.6",
   "description": "Hush Your Money offers a web-based solution for CashShuffle (and a path to CashFusion) integration into the Bitcoin.com mobile wallet.",
   "author": "Bitcoin Cash Please <support@bchplease.org>",
   "scripts": {
@@ -9,10 +9,18 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "bitcoincom-link": "0.1.10-ping02",
     "core-js": "3.6.5",
+    "moment": "2.27.0",
+    "nitojs": "gitlab:bchplease/nitojs",
+    "numeral": "2.0.6",
+    "superagent": "6.1.0",
+    "sweetalert2": "9.17.2",
     "vue": "2.6.11",
     "vue-router": "3.2.0",
-    "vuex": "3.4.0"
+    "vuetify": "2.3.10",
+    "vuex": "3.4.0",
+    "vuex-persistedstate": "3.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
