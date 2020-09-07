@@ -71,7 +71,9 @@ __A:__ There's a 100% chance of that NOT happening by the end of this hackathon.
 
 ### Presentation
 
-...
+[![LBRY Presentation](https://i.imgur.com/t3GizOe.jpg)](https://lbry.tv/@BCHPlease:1/BCHDevCon3-Hush-Your-Money-Presentation:7)
+
+__https://lbry.tv/@BCHPlease:1/BCHDevCon3-Hush-Your-Money-Presentation:7__
 
 ### What's next?
 
