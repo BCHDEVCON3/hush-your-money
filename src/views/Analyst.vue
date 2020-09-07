@@ -49,15 +49,15 @@ export default {
         return {
             chartData: {
                 datasets: [{
-                    data: [10, 20, 30],
-                    backgroundColor: ['red', 'yellow', 'blue'],
+                    data: [30, 5, 10],
+                    backgroundColor: ['green', 'yellow', 'red'],
                 }],
 
                 // These labels appear in the legend and in the tooltips when hovering different arcs
                 labels: [
-                    'Red',
-                    'Yellow',
-                    'Blue'
+                    'Safe',
+                    'Caution',
+                    'Risk'
                 ]
             },
             chartOptions: {

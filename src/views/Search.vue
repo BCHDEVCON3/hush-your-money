@@ -117,17 +117,29 @@ export default {
         },
 
         handleSearch() {
+            if (!this.searchTxt) {
+                return
+            }
+
             this.startSearchProgress()
 
             this.isSearching = true
+
+            let address = null
+
+            if (this.searchTxt.indexOf('bitcoincash:') !== -1) {
+                address = this.searchTxt.slice(12)
+            } else {
+                address = this.searchTxt
+            }
 
             const addrs = {
                 v: 3,
                 q: {
                     find: {
                         $or: [
-                            { 'in.e.a': this.searchTxt },
-                            { 'out.e.a': this.searchTxt },
+                            { 'in.e.a': address },
+                            { 'out.e.a': address },
                         ]
                     },
                     limit: 10
