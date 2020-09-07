@@ -2,7 +2,17 @@
 
 A web-based solution for CashShuffle (and a path to CashFusion) integration into the Bitcoin.com mobile wallet.
 
-__https://bchdevcon3.hushyourmoney.com__
+Download the Bitcoin.com Dev Wallet and try it for yourself:
+__https://ipfs.io/ipfs/QmTaAWcTJUw2QaoTLa6cM2ERLfnrtiVrHLPtoic21fFbTz/bitcoin-wallet-dev.apk__  
+(works on ANY Android device)
+
+This decentralized app is LIVE right now:  
+__https://bchdevcon3.hushyourmoney.com__  
+(open in the Bitcoin.com Dev Wallet)
+
+Help bring CashFusion to your mobile wallet:    
+__https://causes.cash/@bchplease/hush-your-money-7a1589216c59__  
+(accepting pledges starting at $0.01)
 
 ## Foreword
 
@@ -57,7 +67,7 @@ __A:__ There's a 100% chance of that NOT happening by the end of this hackathon.
 
 ### Screenshots
 
-...
+![Mobile screeshots](https://i.imgur.com/M7MFpQ7.jpg)
 
 ### Presentation
 

@@ -50,4 +50,4 @@ _(NOTE: Times are in UTC)_
 
 ### Monday, September 7th 2020
 
-...
+00:42 — Started working on presentation.
